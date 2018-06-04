@@ -1,0 +1,46 @@
+{
+  "name": "scripto",
+  "main": "public/electron.js",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "./",
+  "dependencies": {
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "dev": "nf start",
+    "electron-dev": "electron src/dev-electron-main.js",
+    "preelectron-pack": "npm run build",
+    "electron-pack": "electron-builder --dir",
+    "electron-dist": "electron-builder"
+  },
+  "build": {
+    "productName": "Scripto",
+    "appId": "com.scripto.scripto",
+    "mac": {
+      "category": "scripto.desktop.category.type"
+    },
+    "files": [
+      "build/**/*",
+      "node_modules/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "files": [
+    "build/**/*",
+    "node_modules/**/*"
+  ],
+  "devDependencies": {
+    "electron": "^2.0.2",
+    "foreman": "^3.0.0",
+    "electron-builder": "^20.15.1"
+  }
+}
