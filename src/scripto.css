@@ -1,0 +1,37 @@
+.scripto.a {
+  text-align: center;
+  font-size: 14pt;
+  padding-top:6pt;
+  padding-bottom:9pt;
+  margin:0;
+}
+.scripto.s {
+  text-align: center;
+  font-size: 12pt;
+  margin:0;
+  padding-top:6pt;
+  padding-bottom:6pt;
+}
+
+.scripto.c {
+  text-align: center;
+  font-size: 12pt;
+  text-transform: uppercase;
+  margin:0;
+  padding-top:3pt;
+  padding-bottom:0pt;
+}
+.scripto.ca {
+  text-align: center;
+  font-size: 9pt;
+  margin:0pt;
+  padding-top:2pt;
+  padding-bottom:3pt;
+}
+
+.scripto.d {
+  max-width: 256pt;
+  margin: 0 auto;
+  padding-top:2pt;
+  padding-bottom:6pt;
+}

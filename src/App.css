@@ -49,12 +49,13 @@
 }
 
 .App-title {
-  font-size: 14pt;
+  font-size: 10pt;
   padding:0pt;
   margin:6pt;
-  font-weight: bold;
+  font-weight: normal;
   flex:1;
   height: 16pt;
+  line-height: 16pt;
   color:#7E7E7E
 }
 
@@ -124,9 +125,10 @@
 .Script-Right-Label {
   flex:1;
   color:#b0ad9e;
-  font-size: 10pt;
-  font-weight: "600";
+  font-size: 8pt;
+  font-weight: "100";
   text-align: center;
+  line-height: 16pt;
 }
 .Script-Right-Button {
   flex:1;
@@ -139,13 +141,14 @@
   text-align: center;
   font-weight: normal;
   line-height: 28pt;
-  font-size: 14pt;
+  font-size: 8pt;
 }
 .Script-Right-Button.Primary {
   color:#346D2F;
   background-color:transparent;
   border-color: #346D2F;
   box-shadow: 0 3pt 3pt 3pt rgba(0,0,0,0.07);
+  font-size: 10pt;
 }
 
 .Script-Placeholder-box {

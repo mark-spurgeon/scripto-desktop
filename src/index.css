@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: monospace;
+  font-family: "Liberation Mono", monospace;
   background:#E1DAC9;
   color: #7E7E7E;
 }

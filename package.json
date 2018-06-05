@@ -1,12 +1,14 @@
 {
   "name": "scripto",
   "main": "public/electron.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "homepage": "./",
   "dependencies": {
+    "fs": "0.0.1-security",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4"
   },
   "scripts": {
@@ -18,13 +20,25 @@
     "electron-dev": "electron src/dev-electron-main.js",
     "preelectron-pack": "npm run build",
     "electron-pack": "electron-builder --dir",
+    "preelectron-dist": "npm run build",
     "electron-dist": "electron-builder"
   },
   "build": {
     "productName": "Scripto",
     "appId": "com.scripto.scripto",
     "mac": {
-      "category": "scripto.desktop.category.type"
+      "category": "public.app-category.utilities",
+      "extendInfo": [
+        {
+          "CFBundleTypeExtensions": [
+            "scripto"
+          ],
+          "CFBundleTypeIconFile": "file.icns",
+          "CFBundleTypeName": "Screenplay File",
+          "CFBundleTypeRole": "Editor",
+          "LSHandlerRank": "Alternate"
+        }
+      ]
     },
     "files": [
       "build/**/*",

@@ -1,7 +1,7 @@
 const net = require('net');
 const port = 3505;
 
-process.env.ELECTRON_START_URL = `http://localhost:3505`;
+process.env.ELECTRON_START_URL = `http://localhost:3505/#/?file=filename`;
 
 const client = new net.Socket();
 
