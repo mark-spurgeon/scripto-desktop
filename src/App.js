@@ -15,6 +15,9 @@ class Main extends Component {
       checked:true,
       file:null,
     }
+    this._onScriptUpdate = this._onScriptUpdate.bind(this);
+    this._saveScript = this._saveScript.bind(this)
+
   }
   onLightMode(e) {
     console.warn(e.currentTarget.checked);
@@ -36,27 +39,33 @@ class Main extends Component {
     const self = this;
 
     if (this.state.file) {
-      if (this.state.file=="filename") {
-        var file = "/Users/markspurgeon/Desktop/scripto-file/examples/createdFile.scripto"
-      } else {
-        var file = this.state.file
-      }
-      console.log('found file');
-
-      fs.readFile(file, function read(err, data) {
+      fs.readFile(this.state.file, function read(err, data) {
         if (err) {
             throw err;
         }
         var dat = scobj.loadData(data);
         var scrd = scobj.getScript();
-        console.log(dat, scrd);
         self.setState({scripto:scobj, scriptData:scrd})
       });
     }
 
   }
 
-
+  _onScriptUpdate(e,item) {
+    var newitem = item;
+    newitem.content = e.target.value;
+    this.state.scripto.updateScriptItem(newitem);
+    this.setState({scriptData:this.state.scripto.getScript()});
+  }
+  _saveScript() {
+    var sc = this.state.scripto.getStringData();
+    fs.writeFile(this.state.file, sc, function(err){
+      if (err) {
+        return console.log(err);
+      }
+    });
+    console.log('saved');
+  }
 
   render() {
 
@@ -71,40 +80,39 @@ class Main extends Component {
     }
 
     if (this.state.scripto) {
-      console.log(this.state.scriptData);
       var scriptContent = this.state.scriptData.map((item) => {
         if (item.type=="§T"){
           return (
-            <p className="scripto t">{item.content}</p>
+            <input className="scripto input t" type="text" name="Title" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         } else if (item.type=="§ST"){
           return (
-            <p className="scripto st">{item.content}</p>
+            <input className="scripto input st" type="text" name="Subtitle" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         } else if (item.type=="§C"){
           return (
-            <p className="scripto c">{item.content}</p>
+            <input className="scripto input c" type="text" name="Character" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         }
         else if (item.type=="§CA"){
           return (
-            <p className="scripto ca">{item.content}</p>
+            <input className="scripto input ca" type="text" name="Character Action" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         } else if (item.type=="§A"){
           return (
-            <p className="scripto a">{item.content}</p>
+            <input className="scripto input a" type="text" name="Act" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         } else if (item.type=="§S"){
           return (
-            <p className="scripto s">{item.content}</p>
+            <input className="scripto input s" type="text" name="Scene" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         } else if (item.type=="§D"){
           return (
-            <p className="scripto d">{item.content}</p>
+            <input className="scripto input d" type="text" name="Dialogue" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></input>
           )
         } else {
           return (
-            <p className="scripto p">{item.content}</p>
+            <textarea className="scripto input p" type="text" name="Paragraph" value={item.content} key={item.id} onChange={(e)=>this._onScriptUpdate(e, item)}></textarea>
           )
         }
 
@@ -133,55 +141,46 @@ class Main extends Component {
                   <div className="Script-main">
                       <div className="Script-Placeholder-box">
                         {scriptContent}
-                        <div className="Script-Placeholder title">
 
-                        </div>
-                        <div className="Script-Placeholder subtitle">
+                        {
+                          !scriptContent &&
 
-                        </div>
-                        <div className="Script-Placeholder c-box"><div className="Script-Placeholder character"></div></div>
-                        <div className="Script-Placeholder paragraph">
-                          <div className="Script-Placeholder p-line-indent">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                        </div>
-                        <div className="Script-Placeholder c-box"><div className="Script-Placeholder character"></div></div>
-                        <div className="Script-Placeholder paragraph">
-                          <div className="Script-Placeholder p-line-indent">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                        </div>
-                        <div className="Script-Placeholder c-box"><div className="Script-Placeholder character"></div></div>
-                        <div className="Script-Placeholder paragraph">
-                          <div className="Script-Placeholder p-line-indent">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                          <div className="Script-Placeholder p-line">
-                          </div>
-                        </div>
+                          <div>
+                            <div className="Script-Placeholder title">
 
+                            </div>
+                            <div className="Script-Placeholder subtitle">
 
-                        <p>This is actual text that will be read</p>
+                            </div>
+                            <div className="Script-Placeholder c-box"><div className="Script-Placeholder character"></div></div>
+                            <div className="Script-Placeholder paragraph">
+                              <div className="Script-Placeholder p-line-indent">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                            </div>
+                            <div className="Script-Placeholder c-box"><div className="Script-Placeholder character"></div></div>
+                            <div className="Script-Placeholder paragraph">
+                              <div className="Script-Placeholder p-line-indent">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                              <div className="Script-Placeholder p-line">
+                              </div>
+                            </div>
+                          </div>
 
+                        }
                       </div>
                   </div>
                   <div className="Script-Right">
@@ -202,7 +201,7 @@ class Main extends Component {
                       </a>
                     </div>
                     <div className="Script-Right-Button-Box">
-                        <a href="#" className="Script-Right-Button Primary">
+                        <a href="#" className="Script-Right-Button Primary" onClick={()=>this._saveScript()}>
                           save script
                         </a>
                     </div>

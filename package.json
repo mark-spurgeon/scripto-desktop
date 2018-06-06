@@ -26,6 +26,7 @@
   "build": {
     "productName": "Scripto",
     "appId": "com.scripto.scripto",
+    "icon":"build/icon.icns",
     "mac": {
       "category": "public.app-category.utilities",
       "extendInfo": [
@@ -40,9 +41,13 @@
         }
       ]
     },
+    "dmg":{
+      "icon":"installer.icns"
+    },
     "files": [
       "build/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "assets/**/*"
     ],
     "directories": {
       "buildResources": "assets"
@@ -50,7 +55,8 @@
   },
   "files": [
     "build/**/*",
-    "node_modules/**/*"
+    "node_modules/**/*",
+    "assets/**/*"
   ],
   "devDependencies": {
     "electron": "^2.0.2",

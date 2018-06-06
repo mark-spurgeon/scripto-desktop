@@ -1,3 +1,10 @@
+.input {
+  font-family: "Liberation Mono";
+  background-color:transparent;
+  color:#7E7E7E;
+  border-width: 0;
+  width:100%;
+}
 .scripto.a {
   text-align: center;
   font-size: 14pt;
@@ -31,6 +38,7 @@
 
 .scripto.d {
   max-width: 256pt;
+  display: block;
   margin: 0 auto;
   padding-top:2pt;
   padding-bottom:6pt;
